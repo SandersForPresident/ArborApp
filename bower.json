@@ -6,7 +6,7 @@
     "Zach Schneider <schneidmaster@gmail.com>"
   ],
   "description": "Recursive self-organizing teams.",
-  "license": "MIT",
+  "license": "AGPL",
   "ignore": [
     "**/.*",
     "node_modules",
