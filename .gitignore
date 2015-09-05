@@ -24,3 +24,6 @@
 
 # Ignore bower files.
 /vendor/assets/bower_components
+
+# Ignore rbenv gemsets config.
+.rbenv-gemsets
