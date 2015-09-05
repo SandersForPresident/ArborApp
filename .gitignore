@@ -21,3 +21,6 @@
 
 # Ignore configuration.
 .env
+
+# Ignore bower files.
+/vendor/assets/bower_components

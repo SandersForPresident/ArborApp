@@ -1,0 +1,23 @@
+{
+  "name": "ArborApp",
+  "version": "1.0.0",
+  "homepage": "https://github.com/SandersForPresident/ArborApp",
+  "authors": [
+    "Zach Schneider <schneidmaster@gmail.com>"
+  ],
+  "description": "Recursive self-organizing teams.",
+  "license": "AGPL",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "berniestrap": "git@github.com:SandersForPresident/bootstrap.git#~3.3.5",
+    "jquery": "2.1.1",
+    "jquery-ujs": "*",
+    "rails-turbolinks": "~2.5.2"
+  }
+}
