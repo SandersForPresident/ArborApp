@@ -1,0 +1,10 @@
+AllCops:
+  Exclude:
+    - bin/**/*
+    - db/**/*
+    - vendor/**/*
+
+Documentation:
+  Enabled: false
+LineLength:
+  Max: 175
