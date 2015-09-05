@@ -18,3 +18,6 @@
 
 # Ignore coverage reports.
 /spec/coverage
+
+# Ignore configuration.
+.env

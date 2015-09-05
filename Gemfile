@@ -31,6 +31,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Use Omniauth for authentication
+gem 'omniauth'
+gem 'omniauth-slack'
+
 group :production do
   gem 'pg'
   gem 'puma'
@@ -41,6 +45,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
   gem 'rubocop'
+  gem 'dotenv'
 end
 
 group :test do
