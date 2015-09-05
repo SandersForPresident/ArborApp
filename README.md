@@ -15,3 +15,7 @@ SLACK_API_SECRET=secret
 ```
 
 Contact @schneidmaster in Slack to get the development key/secret.
+
+## Assets
+
+We use bower for frontend asset management. After cloning the application, run `bower install` to install frontend dependencies.
