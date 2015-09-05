@@ -23,8 +23,12 @@ module OrganizationApp
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
+    # Use rspec generators.
     config.generators do |g|
       g.test_framework :rspec
     end
+
+    # Add bower components to paths.
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
   end
 end
