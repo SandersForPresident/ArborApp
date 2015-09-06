@@ -60,6 +60,7 @@ group :test do
   gem 'rack_session_access', '~> 0.1.1'
   gem 'rspec-rails', '~> 3.1'
   gem 'guard-rspec', require: false
+  gem 'guard-rubocop'
   gem 'simplecov', '~> 0.10.0'
   gem 'terminal-notifier-guard', '~> 1.6.1'
   gem 'webmock', '~> 1.18.0'
