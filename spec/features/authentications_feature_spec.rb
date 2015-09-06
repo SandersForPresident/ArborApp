@@ -27,7 +27,7 @@ feature 'Authentication' do
       visit '/auth/slack'
     end
 
-    scenario 'logs out the user' do
+    scenario 'visiting "/logout" logs out the user' do
       visit '/logout'
       expect(page).to have_content('Logged out!')
     end

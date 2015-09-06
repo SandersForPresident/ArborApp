@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.2.3'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use SCSS for stylesheets
@@ -57,7 +59,10 @@ group :test do
   gem 'poltergeist', '~> 1.5.0'
   gem 'rack_session_access', '~> 0.1.1'
   gem 'rspec-rails', '~> 3.1'
+  gem 'guard-rspec', require: false
+  gem 'guard-rubocop'
   gem 'simplecov', '~> 0.10.0'
+  gem 'terminal-notifier-guard', '~> 1.6.1'
   gem 'webmock', '~> 1.18.0'
 end
 
