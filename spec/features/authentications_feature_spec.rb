@@ -1,4 +1,6 @@
-feature 'Authentication' do
+require 'rails_helper'
+
+RSpec.feature 'Authentication' do
   context 'using slack' do
     context 'when authentication succeeds' do
       before { mock_slack }
