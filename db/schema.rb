@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150906173424) do
+ActiveRecord::Schema.define(version: 20150906173503) do
 
   create_table "account_users", force: :cascade do |t|
     t.integer  "account_id"
@@ -37,6 +37,14 @@ ActiveRecord::Schema.define(version: 20150906173424) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "team_users", force: :cascade do |t|
+    t.integer  "team_id"
+    t.integer  "user_id"
+    t.integer  "skill_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "teams", force: :cascade do |t|
