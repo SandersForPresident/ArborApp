@@ -45,6 +45,8 @@ group :development, :test do
   gem 'rubocop'
   gem 'dotenv-rails'
 
+  gem 'factory_girl_rails', '~> 4.4.1'
+
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
 end
@@ -54,7 +56,6 @@ group :test do
   gem 'capybara-screenshot', '~> 1.0.11'
   gem 'codeclimate-test-reporter', require: false
   gem 'database_cleaner', '~> 1.3.0'
-  gem 'factory_girl_rails', '~> 4.4.1'
   gem 'faker', '~> 1.3.0'
   gem 'poltergeist', '~> 1.5.0'
   gem 'rack_session_access', '~> 0.1.1'

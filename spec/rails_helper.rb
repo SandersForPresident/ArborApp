@@ -11,6 +11,7 @@ require 'capybara/poltergeist'
 require 'webmock/rspec'
 require 'rack_session_access/capybara'
 require 'support/mock_helpers'
+require 'support/factory_girl'
 
 WebMock.disable_net_connect!(allow_localhost: true, allow: %w(codeclimate.com))
 
@@ -37,9 +38,6 @@ OmniAuth.config.test_mode = true
 OmniAuth.config.logger = Rails.logger
 
 RSpec.configure do |config|
-  # Include FactoryGirl helper methods
-  config.include FactoryGirl::Syntax::Methods
-
   # Include custom helpers
   config.include Features::MockHelpers, type: :feature
   # config.include Features::SessionHelpers, type: :feature
