@@ -27,3 +27,6 @@
 
 # Ignore rbenv gemsets config.
 .rbenv-gemsets
+
+# Ignore rspec examples.txt
+/spec/examples.txt
