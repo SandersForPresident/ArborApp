@@ -1,1 +1,10 @@
-Hello.
+<div class='container'>
+  <h3>Click a skill to view a list of teams who need that skill:</h3>
+  <ul class='nav nav-pills nav-stacked'>
+    <% @skills.each do |skill| %>
+      <li role='presentation'>
+        <%= link_to "#{skill.name}", skill %>
+      </li>
+    <% end %>
+  </ul>
+</div>

@@ -1,0 +1,10 @@
+<div class='container'>
+  <h3>Teams needing <%= @skill.name %>:</h3>
+  <ul class='nav nav-pills nav-stacked'>
+    <% @teams.each do |team| %>
+      <li role='presentation'>
+        <a href='#'><%= team.name %></a>
+      </li>
+    <% end %>
+  </ul>
+</div>
