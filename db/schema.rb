@@ -13,7 +13,13 @@
 
 ActiveRecord::Schema.define(version: 20150906173503) do
 
-  create_table "account_users", force: :cascade do |t|
+  create_table "accounts", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "accounts_users", force: :cascade do |t|
     t.integer  "account_id"
     t.integer  "user_id"
     t.integer  "role",       default: 0
@@ -21,22 +27,16 @@ ActiveRecord::Schema.define(version: 20150906173503) do
     t.datetime "updated_at",             null: false
   end
 
-  create_table "accounts", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "skill_teams", force: :cascade do |t|
-    t.integer "skill_id"
-    t.integer "team_id"
-  end
-
   create_table "skills", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "skills_teams", force: :cascade do |t|
+    t.integer "skill_id"
+    t.integer "team_id"
   end
 
   create_table "team_users", force: :cascade do |t|
