@@ -15,7 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "berniestrap": "git@github.com:SandersForPresident/bootstrap.git#~3.3.5",
+    "berniestrap": "https://github.com/SandersForPresident/bootstrap.git",
     "jquery": "2.1.1",
     "jquery-ujs": "*",
     "rails-turbolinks": "~2.5.2"
