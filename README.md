@@ -1,4 +1,5 @@
 [![Circle CI](https://circleci.com/gh/SandersForPresident/ArborApp.svg?style=svg)](https://circleci.com/gh/SandersForPresident/ArborApp)
+[![Test Coverage](https://codeclimate.com/github/SandersForPresident/ArborApp/badges/coverage.svg)](https://codeclimate.com/github/SandersForPresident/ArborApp/coverage)
 [![Code Climate](https://codeclimate.com/github/SandersForPresident/ArborApp/badges/gpa.svg)](https://codeclimate.com/github/SandersForPresident/ArborApp)
 
 # ArborApp
