@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.2.3'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
 # Use SCSS for stylesheets
@@ -43,21 +45,25 @@ group :development, :test do
   gem 'rubocop'
   gem 'dotenv-rails'
 
+  gem 'factory_girl_rails', '~> 4.4.1'
+
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
 end
 
 group :test do
-  gem 'capybara', '~> 2.3.0'
-  gem 'capybara-screenshot', '~> 0.3.19'
+  gem 'capybara', '~> 2.5.0'
+  gem 'capybara-screenshot', '~> 1.0.11'
   gem 'codeclimate-test-reporter', require: false
   gem 'database_cleaner', '~> 1.3.0'
-  gem 'factory_girl_rails', '~> 4.4.1'
   gem 'faker', '~> 1.3.0'
   gem 'poltergeist', '~> 1.5.0'
   gem 'rack_session_access', '~> 0.1.1'
   gem 'rspec-rails', '~> 3.1'
+  gem 'guard-rspec', require: false
+  gem 'guard-rubocop'
   gem 'simplecov', '~> 0.10.0'
+  gem 'terminal-notifier-guard', '~> 1.6.1'
   gem 'webmock', '~> 1.18.0'
 end
 

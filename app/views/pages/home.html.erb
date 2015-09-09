@@ -1,1 +1,6 @@
-Hello.
+<div class='container'>
+  <h3>Click a skill to view a list of teams who need that skill:</h3>
+  <ul class='nav nav-pills nav-stacked'>
+    <%= render partial: '/partials/name_link_list', collection: @skills, as: :item %>
+  </ul>
+</div>

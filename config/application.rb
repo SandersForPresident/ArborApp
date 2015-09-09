@@ -23,9 +23,10 @@ module OrganizationApp
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    # Use rspec generators.
+    # Use rspec and factory_girl generators.
     config.generators do |g|
       g.test_framework :rspec
+      g.fixture_replacement :factory_girl, dir: 'spec/factories'
     end
 
     # Add bower components to paths.

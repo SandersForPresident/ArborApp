@@ -1,0 +1,6 @@
+<div class='container'>
+  <h3>Teams needing <%= @skill.name %>:</h3>
+  <ul class='nav nav-pills nav-stacked'>
+    <%= render partial: '/partials/name_link_list', collection: @teams, as: :item %>
+  </ul>
+</div>
