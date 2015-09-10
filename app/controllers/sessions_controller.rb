@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def create
-    @user = User.find_or_create_from_auth_hash auth_hash
+    @user = Authenticator.new(auth_hash).authenticate
     session[:current_user] = @user.id
     redirect_to root_path, notice: 'Logged in!'
   end

@@ -4,6 +4,7 @@ ruby '2.2.3'
 
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jbuilder', '~> 2.0'
+gem 'monban'
 gem 'omniauth'
 gem 'omniauth-slack'
 gem 'rails', '4.2.4'
@@ -23,6 +24,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'factory_girl_rails', '~> 4.4.1'
   gem 'rubocop'
+  gem 'shoulda-matchers'
   gem 'sqlite3'
 end
 

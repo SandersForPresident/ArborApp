@@ -12,6 +12,7 @@ require 'webmock/rspec'
 require 'rack_session_access/capybara'
 require 'support/mock_helpers'
 require 'support/factory_girl'
+require 'shoulda/matchers'
 
 WebMock.disable_net_connect!(allow_localhost: true, allow: %w(codeclimate.com))
 
