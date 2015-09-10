@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150910000655) do
+ActiveRecord::Schema.define(version: 20150910011129) do
 
   create_table "group_memberships", force: :cascade do |t|
     t.integer  "group_id"
@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(version: 20150910000655) do
   end
 
   create_table "teams", force: :cascade do |t|
+    t.integer  "account_id"
+    t.integer  "team_id"
     t.string   "name"
     t.text     "description"
     t.datetime "created_at",  null: false
@@ -66,8 +68,10 @@ ActiveRecord::Schema.define(version: 20150910000655) do
     t.string   "uid"
     t.string   "name"
     t.string   "avatar"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "email",              null: false
+    t.string   "slack_access_token"
   end
 
 end
