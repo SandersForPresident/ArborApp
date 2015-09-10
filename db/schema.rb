@@ -11,14 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150910011129) do
-
-  create_table "group_memberships", force: :cascade do |t|
-    t.integer  "group_id"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 20150910204031) do
 
   create_table "group_memberships_skills", force: :cascade do |t|
     t.integer "group_membership_id"
@@ -39,19 +32,25 @@ ActiveRecord::Schema.define(version: 20150910011129) do
     t.integer "skill_id"
   end
 
+  create_table "memberships", force: :cascade do |t|
+    t.integer  "joinable_id"
+    t.string   "joinable_type"
+    t.integer  "user_id"
+    t.integer  "role",          default: 0
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
+
+  create_table "memberships_skills", force: :cascade do |t|
+    t.integer "group_membership_id"
+    t.integer "skill_id"
+  end
+
   create_table "skills", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-  end
-
-  create_table "team_memberships", force: :cascade do |t|
-    t.integer  "team_id"
-    t.integer  "user_id"
-    t.integer  "role",       default: 0
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
   end
 
   create_table "teams", force: :cascade do |t|

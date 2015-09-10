@@ -5,6 +5,6 @@ class Group < ActiveRecord::Base
   has_and_belongs_to_many :skills
 
   has_many :subgroups, class_name: 'Group'
-  has_many :group_memberships
-  has_many :users, through: :group_memberships
+  has_many :memberships, as: :joinable
+  has_many :users, through: :memberships
 end
