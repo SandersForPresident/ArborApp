@@ -11,21 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150909235820) do
-
-  create_table "accounts", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "accounts_users", force: :cascade do |t|
-    t.integer  "account_id"
-    t.integer  "user_id"
-    t.integer  "role",       default: 0
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
+ActiveRecord::Schema.define(version: 20150910011129) do
 
   create_table "group_memberships", force: :cascade do |t|
     t.integer  "group_id"
@@ -40,7 +26,6 @@ ActiveRecord::Schema.define(version: 20150909235820) do
   end
 
   create_table "groups", force: :cascade do |t|
-    t.integer  "account_id"
     t.integer  "team_id"
     t.integer  "group_id"
     t.string   "name"
@@ -55,6 +40,21 @@ ActiveRecord::Schema.define(version: 20150909235820) do
   end
 
   create_table "skills", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "team_memberships", force: :cascade do |t|
+    t.integer  "team_id"
+    t.integer  "user_id"
+    t.integer  "role",       default: 0
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "teams", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.datetime "created_at",  null: false
