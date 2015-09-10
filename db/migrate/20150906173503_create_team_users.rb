@@ -4,7 +4,7 @@ class CreateTeamUsers < ActiveRecord::Migration
       t.belongs_to :team
       t.belongs_to :user
       t.belongs_to :skill
-      
+
       t.timestamps null: false
     end
   end

@@ -1,14 +1,14 @@
 require 'rails_helper'
 
-RSpec.feature 'Users can view all teams', type: :feature do
-  context 'when a user is on the team index page' do
-    let!(:teams) { create_list(:team, 3) }
+RSpec.feature 'Users can view all groups', type: :feature do
+  context 'when a user is on the group index page' do
+    let!(:groups) { create_list(:group, 3) }
 
-    before { visit '/teams' }
+    before { visit '/groups' }
 
-    scenario 'they see a list of all teams' do
-      teams.each do |team|
-        expect(page).to have_content(team.name)
+    scenario 'they see a list of all groups' do
+      groups.each do |group|
+        expect(page).to have_content(group.name)
       end
     end
   end

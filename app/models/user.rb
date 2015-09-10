@@ -1,8 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :account_users
-  has_many :accounts, through: :account_users
-  has_many :team_users
-  has_many :teams, through: :team_users
+  has_many :groups, through: :group_memberships
+  has_many :teams, through: :team_memberships
 
   class << self
     def find_or_create_from_auth_hash(auth_hash)
