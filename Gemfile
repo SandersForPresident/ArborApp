@@ -25,10 +25,6 @@ group :development, :test do
   gem 'byebug'
   gem 'dotenv-rails'
   gem 'factory_girl_rails', '~> 4.4.1'
-  gem 'pry-rails'
-  gem 'rubocop'
-  gem 'shoulda-matchers'
-  gem 'sqlite3'
 end
 
 group :test do
@@ -42,6 +38,7 @@ group :test do
   gem 'poltergeist', '~> 1.5.0'
   gem 'rack_session_access', '~> 0.1.1'
   gem 'rspec-rails', '~> 3.1'
+  gem 'shoulda-matchers'
   gem 'simplecov', '~> 0.10.0'
   gem 'terminal-notifier-guard', '~> 1.6.1'
   gem 'webmock', '~> 1.18.0'
