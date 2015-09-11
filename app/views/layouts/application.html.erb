@@ -6,7 +6,6 @@
     <title><%= content_for?(:title) ? yield(:title) : 'Arbor' %></title>
     <meta name='description' content='<%= content_for?(:description) ? yield(:description) : 'Arbor' %>'>
     <%= stylesheet_link_tag 'application', media: 'all', data: { turbolinks: { track: true } } %>
-    <%= javascript_include_tag 'application', data: { turbolinks: { track: true } } %>
     <%= csrf_meta_tags %>
   </head>
   <body>
@@ -17,5 +16,6 @@
        <%= render 'layouts/messages' %>
        <%= yield %>
     </main>
+    <%= javascript_include_tag 'application', data: { turbolinks: { track: true } } %>
   </body>
 </html>

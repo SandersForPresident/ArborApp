@@ -7,7 +7,12 @@ RSpec.feature 'Authentication' do
 
       scenario 'logs in the user' do
         visit '/auth/slack'
-        expect(page).to have_content('Logged in!')
+        expect(page).to have_content(
+          t(
+            'oauth_callbacks.show.success',
+            email: 'someemail@email.com'
+          )
+        )
         expect(User.where(name: 'Joe Bloggs').count).to eq(1)
       end
     end
@@ -17,7 +22,7 @@ RSpec.feature 'Authentication' do
 
       scenario 'does not log in the user' do
         visit '/auth/slack'
-        expect(page).to have_content('Login failed. Please try again.')
+        expect(page).to have_content(t('oauth_failures.show.failed'))
         expect(User.where(name: 'Joe Bloggs').count).to eq(0)
       end
     end
@@ -31,7 +36,7 @@ RSpec.feature 'Authentication' do
 
     scenario 'visiting "/logout" logs out the user' do
       visit '/logout'
-      expect(page).to have_content('Logged out!')
+      expect(page).to have_content(t('sessions.destroy.success'))
     end
   end
 end

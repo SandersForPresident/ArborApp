@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(version: 20150910204031) do
   end
 
   create_table "teams", force: :cascade do |t|
+    t.integer  "account_id"
+    t.integer  "team_id"
     t.string   "name"
     t.text     "description"
     t.datetime "created_at",  null: false
@@ -65,8 +67,10 @@ ActiveRecord::Schema.define(version: 20150910204031) do
     t.string   "uid"
     t.string   "name"
     t.string   "avatar"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "email",              null: false
+    t.string   "slack_access_token"
   end
 
 end

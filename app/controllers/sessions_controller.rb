@@ -1,17 +1,7 @@
 class SessionsController < ApplicationController
-  def create
-    @user = User.find_or_create_from_auth_hash auth_hash
-    session[:current_user] = @user.id
-    redirect_to root_path, notice: 'Logged in!'
-  end
-
-  def failure
-    redirect_to root_path, alert: 'Login failed. Please try again.'
-  end
-
-  def logout
-    session[:current_user] = nil
-    redirect_to root_path, notice: 'Logged out!'
+  def destroy
+    sign_out
+    redirect_to root_path, notice: t('.success')
   end
 
   protected

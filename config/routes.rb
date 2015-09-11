@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :skills, only: [:show]
   resources :groups, only: [:index, :show]
 
-  get '/auth/:provider/callback', to: 'sessions#create'
-  get '/auth/failure', to: 'sessions#failure'
-  get '/logout', to: 'sessions#logout', as: 'logout'
+  get '/auth/:provider/callback', to: 'oauth_callbacks#show'
+  get '/auth/failure', to: 'oauth_failures#show'
+  get '/logout', to: 'sessions#destroy', as: 'logout'
 end

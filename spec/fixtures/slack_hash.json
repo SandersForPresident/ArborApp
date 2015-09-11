@@ -3,6 +3,10 @@
   "uid": "1234567",
   "info": {
     "name": "Joe Bloggs",
-    "image": "http://www.gravatar.com/avatar/nope"
+    "image": "http://www.gravatar.com/avatar/nope",
+    "email": "someemail@email.com"
+  },
+  "credentials": {
+    "token": "SOME_TOKEN"
   }
 }
