@@ -181,6 +181,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-rails (0.3.4)
+      pry (>= 0.9.10)
     puma (2.11.3)
       rack (>= 1.1, < 2.0)
     rack (1.6.4)
@@ -334,6 +336,7 @@ DEPENDENCIES
   omniauth-slack
   pg
   poltergeist (~> 1.5.0)
+  pry-rails
   puma
   rack_session_access (~> 0.1.1)
   rails (= 4.2.4)

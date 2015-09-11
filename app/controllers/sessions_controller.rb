@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def destroy
-    session[:current_user] = nil
+    sign_out
     redirect_to root_path, notice: t('.success')
   end
 

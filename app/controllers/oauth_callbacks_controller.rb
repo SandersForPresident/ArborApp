@@ -1,8 +1,8 @@
 class OauthCallbacksController < ApplicationController
   def show
-    @user = Authenticator.new(auth_hash).authenticate
-    session[:current_user] = @user.id
-    redirect_to root_path, notice: t('.success', email: @user.email)
+    user = Authenticator.new(auth_hash).authenticate
+    sign_in(user)
+    redirect_to root_path, notice: t('.success', email: user.email)
   end
 
   private
