@@ -1,10 +1,10 @@
 FactoryGirl.define do
   factory :user do
-    sequence(:email) { |n| "dough-#{n}@example.com" }
+    sequence(:email) { |n| "user-#{n}@example.com" }
     provider 'slack'
-    slack_access_token 'A_TOKEN'
-    name 'Some name'
-    avatar 'some_url_of_an_avatar.jpg'
+    sequence(:slack_access_token) { |n| "SLACK_ACCESS_TOKEN_#{n}" }
+    sequence(:name) { |n| "User #{n} Name" }
+    sequence(:avatar) { |n| "user_#{n}_avatar.jpg" }
     sequence(:uid) { |n| n }
   end
 end
