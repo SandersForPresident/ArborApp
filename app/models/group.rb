@@ -16,6 +16,10 @@ class Group < ActiveRecord::Base
     memberships.where(user: user).any?(&:member?)
   end
 
+  def contains?(user)
+    admin?(user) || member?(user)
+  end
+
   private
 
   def team_admin?(user)
