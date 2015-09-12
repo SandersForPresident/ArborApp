@@ -5,6 +5,5 @@ class User < ActiveRecord::Base
 
   validates :slack_access_token, presence: true
   validates :email, presence: true
-  validates :name, presence: true
   validates :uid, presence: true, uniqueness: { scope: [:provider] }
 end

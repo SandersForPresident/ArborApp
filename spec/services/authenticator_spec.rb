@@ -14,9 +14,27 @@ RSpec.describe Authenticator do
       expect(authenticated_user.slack_access_token)
         .to eq auth_hash['credentials']['token']
     end
+
+    it 'creates a user from auth_hash if not found' do
+      authenticator = Authenticator.new(auth_hash)
+
+      authenticator.authenticate
+      expect(User.count).to eq 1
+
+      authenticator = Authenticator.new(auth_hash_with_diff_uid)
+      authenticator.authenticate
+
+      expect(User.count).to eq 2
+    end
   end
 
   def auth_hash
-    File.read('spec/fixtures/slack_hash.json')
+    JSON.parse(File.read('spec/fixtures/slack_hash.json'))
+  end
+
+  def auth_hash_with_diff_uid
+    hash = auth_hash
+    hash['uid'] = 'mynewuid'
+    hash
   end
 end
