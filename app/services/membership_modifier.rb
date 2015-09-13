@@ -4,7 +4,9 @@ class MembershipModifier
   class RequestingUserNotAdmin < StandardError; end
 
   def self.create_membership(requesting_user:, joinable:, target_user:, role:)
-    fail MembershipModifier::RequestingUserNotAdmin unless joinable.admin? requesting_user
+    unless joinable.admin? requesting_user
+      fail MembershipModifier::RequestingUserNotAdmin
+    end
 
     if joinable.contains? target_user
       fail MembershipModifier::ExistingMembership
@@ -14,7 +16,9 @@ class MembershipModifier
   end
 
   def self.update_membership(requesting_user:, joinable:, target_user:, role:)
-    fail MembershipModifier::RequestingUserNotAdmin unless joinable.admin? requesting_user
+    unless joinable.admin? requesting_user
+      fail MembershipModifier::RequestingUserNotAdmin
+    end
 
     unless joinable.contains? target_user
       fail MembershipModifier::NoExistingMembership
@@ -24,7 +28,9 @@ class MembershipModifier
   end
 
   def self.destroy_membership(requesting_user:, joinable:, target_user:)
-    fail MembershipModifier::RequestingUserNotAdmin unless joinable.admin? requesting_user
+    unless joinable.admin? requesting_user
+      fail MembershipModifier::RequestingUserNotAdmin
+    end
 
     Membership.where(user: target_user, joinable: joinable).each(&:destroy)
   end

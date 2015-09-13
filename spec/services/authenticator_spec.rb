@@ -17,14 +17,9 @@ RSpec.describe Authenticator do
 
     it 'creates a user from auth_hash if not found' do
       authenticator = Authenticator.new(auth_hash)
-
-      authenticator.authenticate
-      expect(User.count).to eq 1
-
+      expect { authenticator.authenticate }.to change(User, :count).by(1)
       authenticator = Authenticator.new(auth_hash_with_diff_uid)
-      authenticator.authenticate
-
-      expect(User.count).to eq 2
+      expect { authenticator.authenticate }.to change(User, :count).by(1)
     end
   end
 

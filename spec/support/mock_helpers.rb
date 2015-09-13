@@ -1,7 +1,10 @@
 module Features
   module MockHelpers
     def mock_slack
-      OmniAuth.config.add_mock(:slack, JSON.parse(File.read('spec/fixtures/slack_hash.json')))
+      OmniAuth.config.add_mock(
+        :slack,
+        JSON.parse(File.read('spec/fixtures/slack_hash.json'))
+      )
     end
 
     def mock_slack_failure
