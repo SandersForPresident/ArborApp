@@ -7,13 +7,13 @@ RSpec.describe MembershipModifier do
 
   describe '#update_membership' do
     context 'when requesting_user is not an admin of target_joinable' do
-      it 'does nothing' do
-        expect(Membership).not_to receive(:update)
-
-        MembershipModifier.create_membership(requesting_user: requesting_user,
-                                             joinable: target_joinable,
-                                             target_user: target_user,
-                                             admin: false)
+      it 'raises a RequestingUserNotAdmin exception' do
+        expect do
+          MembershipModifier.update_membership(requesting_user: requesting_user,
+                                               joinable: target_joinable,
+                                               target_user: target_user,
+                                               role: :admin)
+        end.to raise_error(MembershipModifier::RequestingUserNotAdmin)
       end
     end
 
@@ -32,9 +32,9 @@ RSpec.describe MembershipModifier do
             MembershipModifier.update_membership(requesting_user: requesting_user,
                                                  joinable: target_joinable,
                                                  target_user: target_user,
-                                                 admin: false)
+                                                 role: :member)
 
-            expect(target_joinable.member? target_user).to be_truthy
+            expect(target_joinable.member? target_user).to be true
           end
         end
       end
@@ -45,7 +45,7 @@ RSpec.describe MembershipModifier do
             MembershipModifier.update_membership(requesting_user: requesting_user,
                                                  joinable: target_joinable,
                                                  target_user: target_user,
-                                                 admin: true)
+                                                 role: :admin)
           end.to raise_error(MembershipModifier::NoExistingMembership)
         end
       end
@@ -59,12 +59,12 @@ RSpec.describe MembershipModifier do
       end
 
       context 'and requesting_user is not an admin of target_joinable' do
-        it 'does nothing' do
-          MembershipModifier.destroy_membership(requesting_user: requesting_user,
-                                                joinable: target_joinable,
-                                                target_user: target_user)
-
-          expect(target_joinable.member? target_user).to be_truthy
+        it 'raises a RequestingUserNotAdmin exception' do
+          expect do
+            MembershipModifier.destroy_membership(requesting_user: requesting_user,
+                                                  joinable: target_joinable,
+                                                  target_user: target_user)
+          end.to raise_error(MembershipModifier::RequestingUserNotAdmin)
         end
       end
 
@@ -76,7 +76,7 @@ RSpec.describe MembershipModifier do
                                                 joinable: target_joinable,
                                                 target_user: target_user)
 
-          expect(target_joinable.member? target_user).to be_falsy
+          expect(target_joinable.member? target_user).to be false
         end
       end
     end
@@ -84,13 +84,13 @@ RSpec.describe MembershipModifier do
 
   describe '#create_membership' do
     context 'when requesting_user is not an admin of target_joinable' do
-      it 'does nothing' do
-        MembershipModifier.create_membership(requesting_user: requesting_user,
-                                             joinable: target_joinable,
-                                             target_user: target_user,
-                                             admin: false)
-
-        expect(target_joinable.member? target_user).to be_falsy
+      it 'raises a RequestingUserNotAdmin exception' do
+        expect do
+          MembershipModifier.create_membership(requesting_user: requesting_user,
+                                               joinable: target_joinable,
+                                               target_user: target_user,
+                                               role: :member)
+        end.to raise_error(MembershipModifier::RequestingUserNotAdmin)
       end
     end
 
@@ -105,9 +105,9 @@ RSpec.describe MembershipModifier do
             MembershipModifier.create_membership(requesting_user: requesting_user,
                                                  joinable: target_joinable,
                                                  target_user: target_user,
-                                                 admin: false)
+                                                 role: :member)
 
-            expect(target_joinable.member? target_user).to be_truthy
+            expect(target_joinable.member? target_user).to be true
           end
         end
 
@@ -116,10 +116,10 @@ RSpec.describe MembershipModifier do
             MembershipModifier.create_membership(requesting_user: requesting_user,
                                                  joinable: target_joinable,
                                                  target_user: target_user,
-                                                 admin: true)
+                                                 role: :admin)
 
             expect(target_joinable).to receive(:admin?).and_call_original
-            expect(target_joinable.admin?(target_user)).to be_truthy
+            expect(target_joinable.admin?(target_user)).to be true
           end
         end
       end
@@ -134,7 +134,7 @@ RSpec.describe MembershipModifier do
             MembershipModifier.create_membership(requesting_user: requesting_user,
                                                  joinable: target_joinable,
                                                  target_user: target_user,
-                                                 admin: true)
+                                                 role: :admin)
           end.to raise_error(MembershipModifier::ExistingMembership)
         end
       end
