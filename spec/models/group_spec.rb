@@ -5,7 +5,8 @@ RSpec.describe Group, type: :model do
     let(:user) { FactoryGirl.create(:user) }
     let(:group) { FactoryGirl.create(:group_with_grandparent) }
 
-    context "when user is not an admin of the group, the group's team, or the group's ancestors" do
+    context "when user is not an admin of the group, the group's team, or the\
+            group's ancestors" do
       it 'returns a false value' do
         expect(group.admin? user).to eq(false)
       end
@@ -23,7 +24,11 @@ RSpec.describe Group, type: :model do
 
     context "when user is an admin of the group's team" do
       before do
-        FactoryGirl.create(:group_admin_membership, user: user, joinable: group.team)
+        FactoryGirl.create(
+          :group_admin_membership,
+          user: user,
+          joinable: group.team
+        )
       end
 
       it 'returns true' do
@@ -33,7 +38,11 @@ RSpec.describe Group, type: :model do
 
     context "when user is an admin of the group's parent_group" do
       before do
-        FactoryGirl.create(:group_admin_membership, user: user, joinable: group.parent_group)
+        FactoryGirl.create(
+          :group_admin_membership,
+          user: user,
+          joinable: group.parent_group
+        )
       end
 
       it 'returns true' do
@@ -43,7 +52,11 @@ RSpec.describe Group, type: :model do
 
     context "when user is an admin of the group's grandparent_group" do
       before do
-        FactoryGirl.create(:group_admin_membership, user: user, joinable: group.parent_group.parent_group)
+        FactoryGirl.create(
+          :group_admin_membership,
+          user: user,
+          joinable: group.parent_group.parent_group
+        )
       end
 
       it 'returns true' do

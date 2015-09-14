@@ -1,6 +1,7 @@
 require 'rails_helper'
 
-RSpec.feature 'Users can view groups that need a selected skill', type: :feature do
+RSpec.feature 'Users can view groups that need a selected skill',
+              type: :feature do
   context 'when a user is on the index page' do
     let!(:skills) { create_list(:skill, 3) }
 

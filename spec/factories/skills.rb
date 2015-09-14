@@ -1,7 +1,5 @@
 FactoryGirl.define do
   factory :skill do
-    sequence :name do |n|
-      "Skill #{n}"
-    end
+    sequence(:name) { |n| "Skill #{n}" }
   end
 end
