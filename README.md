@@ -4,19 +4,33 @@
 
 # ArborApp
 
-A Rails application for recursive self-organizing teams.
+A Rails application for recursive self-organizing teams with first-class Slack integration.
 
 ## Getting Started
 
-Install [postgres](https://wiki.postgresql.org/wiki/Detailed_installation_guides)
+### Dependencies
+
+* [postgres](https://wiki.postgresql.org/wiki/Detailed_installation_guides) (`brew install postgres` on OSX and Homebrew)
+* [npm](https://docs.npmjs.com/getting-started/installing-node) (`brew install node` on OSX and Homebrew)
+* bower (`npm install -g bower`)
+
+### App Setup
+
+Clone the application:
 
 ```
-$bundle install
-$bower install
-$rake db:migrate
+$ git@github.com:SandersForPresident/ArborApp.git
 ```
 
-## Configuration
+Then install the dependencies and run the migrations:
+
+```
+$ bundle install
+$ bower install
+$ rake db:migrate
+```
+
+### Configuration
 
 We use dotenv for configuration in development. You will need to create a file named .env in the root directory with the following contents:
 
@@ -27,11 +41,19 @@ SLACK_API_SECRET=secret
 
 Contact @schneidmaster in Slack to get the development key/secret.
 
-## Assets
+### Start the Rails server
 
-We use bower for frontend asset management. After cloning the application, run `bower install` to install frontend dependencies.
+After installing and configuring, start a server on [http://localhost:3000](http://localhost:3000):
 
-## Start the Rails server
 ```
-$rails s
+$ rails s
 ```
+
+## Contributing
+
+1. Fork it ( https://github.com/SandersForPresident/ArborApp/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Ensure your changes still satisfy the tests and code linting (`bundle exec rspec` and `bundle exec rubocop`)
+4. Commit your changes (`git commit -am 'Add some feature'`)
+5. Push to the branch (`git push origin my-new-feature`)
+6. Create a new Pull Request
