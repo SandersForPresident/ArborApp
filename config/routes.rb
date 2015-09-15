@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   resources :skills, only: [:show]
-  resources :groups, only: [:index, :show]
+  resources :groups, only: [:index, :show, :new, :create]
+  resources :teams, only: [:show]
 
   get '/auth/:provider/callback', to: 'oauth_callbacks#show'
   get '/auth/failure', to: 'oauth_failures#show'

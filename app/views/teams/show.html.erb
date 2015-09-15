@@ -1,0 +1,6 @@
+<div class='container'>
+  <h3><%= @team.name %>:</h3>
+  <% if @admin %>
+    <%= link_to 'Create Group', new_group_path(team: @team) %>
+  <% end %>
+</div>
