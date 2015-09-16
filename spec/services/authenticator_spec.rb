@@ -24,10 +24,16 @@ RSpec.describe Authenticator do
         it 'creates a user and adds it to the team' do
           team = create_team
           authenticated_user = Authenticator.new(auth_hash).authenticate
-          expect(Team.count).to eq 1
           expect(authenticated_user.teams.count).to eq 1
           expect(authenticated_user.teams.first).to eq team
+
+          expect(Team.count).to eq 1
           expect(team.admin?(authenticated_user)).to be user_is_team_admin?
+
+          expect(authenticated_user.memberships.count).to eq 1
+          membership = authenticated_user.memberships.first
+          expect(membership.slack_access_token).to eq auth_hash['credentials']['token']
+          expect(membership.slack_uid).to eq auth_hash['uid']
         end
       end
     end
