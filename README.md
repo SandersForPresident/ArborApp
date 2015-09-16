@@ -12,7 +12,6 @@ A Rails application for recursive self-organizing teams with first-class Slack i
 
 * [postgres](https://wiki.postgresql.org/wiki/Detailed_installation_guides) (`brew install postgres` on OSX and Homebrew)
 * [npm](https://docs.npmjs.com/getting-started/installing-node) (`brew install node` on OSX and Homebrew)
-* bower (`npm install -g bower`)
 
 ### App Setup
 
@@ -26,7 +25,6 @@ Then install the dependencies and run the migrations:
 
 ```
 $ bundle install
-$ bower install
 $ rake db:migrate
 ```
 

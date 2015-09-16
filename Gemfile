@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.2.3'
 
+gem 'bundler', '>= 1.8.4'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'i18n-tasks'
 gem 'jbuilder', '~> 2.0'
@@ -14,6 +15,13 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'slack-ruby-client'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-berniestrap'
+  gem 'rails-assets-jquery'
+  gem 'rails-assets-jquery-ujs'
+  gem 'rails-assets-rails-turbolinks'
+end
 
 group :production do
   gem 'pg'
