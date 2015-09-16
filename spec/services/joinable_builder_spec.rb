@@ -78,7 +78,7 @@ RSpec.describe JoinableBuilder do
         expect do
           JoinableBuilder.build_group(requesting_user: requesting_user,
                                       attributes: attributes)
-        end.to raise_error(ApplicationService::RequestingUserNotAdmin)
+        end.to raise_error(JoinableBuilder::RequestingUserNotAdmin)
       end
     end
   end

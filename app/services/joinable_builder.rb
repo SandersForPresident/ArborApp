@@ -1,4 +1,5 @@
-class JoinableBuilder < ApplicationService
+class JoinableBuilder
+  class RequestingUserNotAdmin < StandardError; end
   class GroupNotInTeam < StandardError; end
   class NoTeamProvided < StandardError; end
 
@@ -30,7 +31,7 @@ class JoinableBuilder < ApplicationService
     fail JoinableBuilder::NoTeamProvided unless team
 
     unless (parent_group || team).admin? requesting_user
-      fail ApplicationService::RequestingUserNotAdmin
+      fail JoinableBuilder::RequestingUserNotAdmin
     end
 
     Group.new(attributes.merge(team: team, parent_group: parent_group))

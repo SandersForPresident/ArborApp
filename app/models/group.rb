@@ -17,29 +17,25 @@ class Group < ActiveRecord::Base
       parent_group_member?(user) || false
   end
 
-  private
+  [:admin, :member].each do |membership_type|
+    membership_check = "#{membership_type}?".to_sym
+    team_membership_check = "team_#{membership_type}?".to_sym
+    self_membership_check = "self_#{membership_type}?".to_sym
+    parent_group_membership_check = "parent_group_#{membership_type}?".to_sym
 
-  def team_admin?(user)
-    team.admin? user
-  end
+    define_method team_membership_check do |user|
+      team.send(membership_check, user)
+    end
+    private team_membership_check.to_sym
 
-  def team_member?(user)
-    team.member? user
-  end
+    define_method self_membership_check do |user|
+      memberships.where(user: user).any?(&membership_check)
+    end
+    private self_membership_check
 
-  def self_admin?(user)
-    memberships.where(user: user).any?(&:admin?)
-  end
-
-  def self_member?(user)
-    memberships.where(user: user).any?(&:member?)
-  end
-
-  def parent_group_admin?(user)
-    parent_group && parent_group.admin?(user)
-  end
-
-  def parent_group_member?(user)
-    parent_group && parent_group.member?(user)
+    define_method parent_group_membership_check do |user|
+      parent_group && parent_group.send(membership_check, user)
+    end
+    private parent_group_membership_check
   end
 end

@@ -13,7 +13,7 @@ RSpec.describe MembershipModifier do
                                                joinable: target_joinable,
                                                target_user: target_user,
                                                role: :admin)
-        end.to raise_error(ApplicationService::RequestingUserNotAdmin)
+        end.to raise_error(MembershipModifier::RequestingUserNotAdmin)
       end
     end
 
@@ -77,7 +77,7 @@ RSpec.describe MembershipModifier do
               joinable: target_joinable,
               target_user: target_user
             )
-          end.to raise_error(ApplicationService::RequestingUserNotAdmin)
+          end.to raise_error(MembershipModifier::RequestingUserNotAdmin)
         end
       end
 
@@ -108,7 +108,7 @@ RSpec.describe MembershipModifier do
                                                joinable: target_joinable,
                                                target_user: target_user,
                                                role: :member)
-        end.to raise_error(ApplicationService::RequestingUserNotAdmin)
+        end.to raise_error(MembershipModifier::RequestingUserNotAdmin)
       end
     end
 
