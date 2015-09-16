@@ -1,10 +1,10 @@
 class MembershipModifier
+  class RequestingUserNotAdmin < StandardError; end
   class ExistingMembership < StandardError; end
   class NoExistingMembership < StandardError; end
-  class RequestingUserNotAdmin < StandardError; end
 
   def self.create_membership(requesting_user:, joinable:, target_user:, role:)
-    unless joinable.admin? requesting_user
+    if requesting_user && !joinable.admin?(requesting_user)
       fail MembershipModifier::RequestingUserNotAdmin
     end
 

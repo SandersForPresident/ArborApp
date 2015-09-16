@@ -1,0 +1,10 @@
+<div class='container'>
+  <h3>Create Group:</h3>
+  <%= form_for @group, url: { action: 'create' } do |f| %>
+    <%= f.label :name, 'Group Name' %>
+    <%= f.text_field :name %>
+    <%= f.hidden_field :team_id, value: @team_id %>
+    <%= f.hidden_field :parent_group_id, value: @parent_group_id %>
+    <%= f.submit 'Create' %>
+  <% end %>
+</div>

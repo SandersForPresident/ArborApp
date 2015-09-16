@@ -1,0 +1,7 @@
+<div class='container'>
+  <h3><%= @group.name %></h3>
+  <% if @admin %>
+    <%= link_to 'Create Sub-Group',
+                new_group_path(parent_group: @group, team: @group.team) %>
+  <% end %>
+</div>

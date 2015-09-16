@@ -19,25 +19,21 @@ RSpec.describe MembershipModifier do
 
     context 'when requesting_user is an admin of target_joinable' do
       before do
-        FactoryGirl.create(
-          :group_admin_membership,
-          user: requesting_user,
-          joinable: target_joinable
-        )
+        FactoryGirl.create(:group_admin_membership,
+                           user: requesting_user,
+                           joinable: target_joinable)
       end
 
       context 'and the target_user is an admin of target_joinable' do
         before do
-          FactoryGirl.create(
-            :group_admin_membership,
-            user: target_user,
-            joinable: target_joinable
-          )
+          FactoryGirl.create(:group_admin_membership,
+                             user: target_user,
+                             joinable: target_joinable)
         end
 
         context 'and the admin: false parameter is passed in' do
-          it "changes the target_user's membership to a member of \
-              target_joinable" do
+          it "changes the target_user's membership to a member of\
+             target_joinable" do
             MembershipModifier.update_membership(
               requesting_user: requesting_user,
               joinable: target_joinable,
@@ -68,11 +64,9 @@ RSpec.describe MembershipModifier do
   describe '#destroy_membership' do
     context 'when target_user is a member of target_joinable' do
       before do
-        FactoryGirl.create(
-          :group_member_membership,
-          user: target_user,
-          joinable: target_joinable
-        )
+        FactoryGirl.create(:group_member_membership,
+                           user: target_user,
+                           joinable: target_joinable)
       end
 
       context 'and requesting_user is not an admin of target_joinable' do
@@ -120,11 +114,9 @@ RSpec.describe MembershipModifier do
 
     context 'when requesting_user is an admin of target_joinable' do
       before do
-        FactoryGirl.create(
-          :group_admin_membership,
-          user: requesting_user,
-          joinable: target_joinable
-        )
+        FactoryGirl.create(:group_admin_membership,
+                           user: requesting_user,
+                           joinable: target_joinable)
       end
 
       context 'and target_user is not an admin or member of target_joinable' do
@@ -156,14 +148,12 @@ RSpec.describe MembershipModifier do
         end
       end
 
-      context 'and target_user is already an admin or member of \
-               target_joinable' do
+      context 'and target_user is already an admin or member of\
+              target_joinable' do
         before do
-          FactoryGirl.create(
-            :group_admin_membership,
-            user: target_user,
-            joinable: target_joinable
-          )
+          FactoryGirl.create(:group_admin_membership,
+                             user: target_user,
+                             joinable: target_joinable)
         end
 
         it 'raises an ExistingMembership exception' do
