@@ -5,7 +5,9 @@ RSpec.describe JoinableBuilder do
 
   describe '#build_team' do
     let(:new_team_name) { 'Team Name' }
-    let(:attributes) { { name: new_team_name } }
+    let(:slack_team_id) { 'T3848YDDY' }
+    let(:slack_team_domain) { 'somedomain' }
+    let(:attributes) { { name: new_team_name, slack_team_domain: slack_team_domain, slack_team_id: slack_team_id } }
 
     it 'returns a newly built team with the passed in attributes' do
       expect(
