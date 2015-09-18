@@ -4,6 +4,16 @@ RSpec.describe MembershipModifier do
   let(:target_joinable) { FactoryGirl.create(:group) }
   let(:target_user) { FactoryGirl.create(:user) }
   let(:requesting_user) { FactoryGirl.create(:user) }
+  let(:membership_attributes) do
+    {
+      role: 'member',
+      slack_uid: 'U999999',
+      slack_access_token: 'some-token'
+    }
+  end
+  let(:membership_attributes_admin) do
+    membership_attributes.merge(role: 'admin')
+  end
 
   describe '#update_membership' do
     context 'when requesting_user is not an admin of target_joinable' do
@@ -12,7 +22,7 @@ RSpec.describe MembershipModifier do
           MembershipModifier.update_membership(requesting_user: requesting_user,
                                                joinable: target_joinable,
                                                target_user: target_user,
-                                               role: :admin)
+                                               attributes: membership_attributes)
         end.to raise_error(MembershipModifier::RequestingUserNotAdmin)
       end
     end
@@ -38,7 +48,7 @@ RSpec.describe MembershipModifier do
               requesting_user: requesting_user,
               joinable: target_joinable,
               target_user: target_user,
-              role: :member
+              attributes: membership_attributes
             )
 
             expect(target_joinable.member? target_user).to be true
@@ -53,7 +63,7 @@ RSpec.describe MembershipModifier do
               requesting_user: requesting_user,
               joinable: target_joinable,
               target_user: target_user,
-              role: :admin
+              attributes: membership_attributes
             )
           end.to raise_error(MembershipModifier::NoExistingMembership)
         end
@@ -107,7 +117,7 @@ RSpec.describe MembershipModifier do
           MembershipModifier.create_membership(requesting_user: requesting_user,
                                                joinable: target_joinable,
                                                target_user: target_user,
-                                               role: :member)
+                                               attributes: membership_attributes_admin)
         end.to raise_error(MembershipModifier::RequestingUserNotAdmin)
       end
     end
@@ -126,7 +136,7 @@ RSpec.describe MembershipModifier do
               requesting_user: requesting_user,
               joinable: target_joinable,
               target_user: target_user,
-              role: :member
+              attributes: membership_attributes
             )
 
             expect(target_joinable.member? target_user).to be true
@@ -139,7 +149,7 @@ RSpec.describe MembershipModifier do
               requesting_user: requesting_user,
               joinable: target_joinable,
               target_user: target_user,
-              role: :admin
+              attributes: membership_attributes_admin
             )
 
             expect(target_joinable).to receive(:admin?).and_call_original
@@ -162,7 +172,7 @@ RSpec.describe MembershipModifier do
               requesting_user: requesting_user,
               joinable: target_joinable,
               target_user: target_user,
-              role: :admin
+              attributes: membership_attributes
             )
           end.to raise_error(MembershipModifier::ExistingMembership)
         end

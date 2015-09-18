@@ -13,7 +13,7 @@ class GroupsController < ApplicationController
     else
       render 'new'
     end
-  rescue ApplicationService::RequestingUserNotAdmin
+  rescue JoinableBuilder::RequestingUserNotAdmin
     render 'new'
   end
 
