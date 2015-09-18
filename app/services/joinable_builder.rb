@@ -9,13 +9,15 @@ class JoinableBuilder
          attributes: attributes)
   end
 
-  def self.build_team(requesting_user:, attributes:)
-    team = Team.new(attributes)
+  def self.build_team(requesting_user:, attributes:, membership_attributes: default_membership_attrs)
+    team = ModelFinder.for(Team, attributes).find
 
-    MembershipModifier.create_membership(requesting_user: nil,
-                                         joinable: team,
-                                         target_user: requesting_user,
-                                         role: :admin)
+    MembershipModifier.find_or_initialize_membership(
+      requesting_user: nil,
+      joinable: team,
+      target_user: requesting_user,
+      attributes: membership_attributes
+    )
 
     team
   end
@@ -35,5 +37,13 @@ class JoinableBuilder
     end
 
     Group.new(attributes.merge(team: team, parent_group: parent_group))
+  end
+
+  private
+
+  def default_membership_attrs
+    {
+      role: 'member'
+    }
   end
 end

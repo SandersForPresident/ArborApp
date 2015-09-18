@@ -7,12 +7,25 @@ RSpec.describe JoinableBuilder do
     let(:new_team_name) { 'Team Name' }
     let(:slack_team_id) { 'T3848YDDY' }
     let(:slack_team_domain) { 'somedomain' }
-    let(:attributes) { { name: new_team_name, slack_team_domain: slack_team_domain, slack_team_id: slack_team_id } }
+    let(:attributes) do
+      {
+        name: new_team_name,
+        slack_team_domain: slack_team_domain,
+        slack_team_id: slack_team_id
+      }
+    end
+    let(:membership_attributes) do
+      {
+        role: 'admin'
+      }
+    end
 
     it 'returns a newly built team with the passed in attributes' do
       expect(
-        JoinableBuilder.build_team(requesting_user: requesting_user,
-                                   attributes: attributes).name
+        JoinableBuilder.build_team(
+          requesting_user: requesting_user,
+          attributes: attributes,
+          membership_attributes: membership_attributes).name
       ).to eq(new_team_name)
     end
 
@@ -20,7 +33,8 @@ RSpec.describe JoinableBuilder do
       expect(
         JoinableBuilder.build_team(
           requesting_user: requesting_user,
-          attributes: attributes
+          attributes: attributes,
+          membership_attributes: membership_attributes
         ).admin? requesting_user
       ).to eq(true)
     end
