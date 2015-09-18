@@ -1,6 +1,6 @@
 module AuthHashTranslator
   class User < Translator
-    def translate
+    def translated_attributes
       {
         email: info['email'],
         name: info['name'],

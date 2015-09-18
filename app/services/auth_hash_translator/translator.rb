@@ -1,12 +1,12 @@
 module AuthHashTranslator
   class Translator
-    class SubclassMustImplimentTranslate < NotImplementedError; end
+    class SubclassMustImplimentTranslatedAttributes < NotImplementedError; end
     def initialize(auth_hash)
       @auth_hash = auth_hash
     end
 
-    def translate
-      fail Translator::SubclassMustImplimentTranslate
+    def translated_attributes
+      fail Translator::SubclassMustImplimentTranslatedAttributes
     end
 
     protected

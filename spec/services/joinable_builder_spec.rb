@@ -60,8 +60,10 @@ RSpec.describe JoinableBuilder do
 
       it 'returns a newly built group with the passed in attributes' do
         expect(
-          JoinableBuilder.build_group(requesting_user: requesting_user,
-                                      attributes: attributes).name
+          JoinableBuilder.build_group(
+            requesting_user: requesting_user,
+            attributes: attributes
+          ).name
         ).to eq(new_group_name)
       end
 
@@ -81,8 +83,10 @@ RSpec.describe JoinableBuilder do
 
         it 'raises a GroupNotInTeam exception' do
           expect do
-            JoinableBuilder.build_group(requesting_user: requesting_user,
-                                        attributes: attributes)
+            JoinableBuilder.build_group(
+              requesting_user: requesting_user,
+              attributes: attributes
+            )
           end.to raise_error(JoinableBuilder::GroupNotInTeam)
         end
       end
@@ -92,8 +96,10 @@ RSpec.describe JoinableBuilder do
             hierarchy" do
       it 'raises a RequestingUserNotAdmin exception' do
         expect do
-          JoinableBuilder.build_group(requesting_user: requesting_user,
-                                      attributes: attributes)
+          JoinableBuilder.build_group(
+            requesting_user: requesting_user,
+            attributes: attributes
+          )
         end.to raise_error(JoinableBuilder::RequestingUserNotAdmin)
       end
     end

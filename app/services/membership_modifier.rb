@@ -13,7 +13,7 @@ class MembershipModifier
     end
 
     attributes = { user: target_user, joinable: joinable }.merge(attributes)
-    ModelFinder.for(Membership, attributes).find
+    ModelFinder.for(Membership, attributes).find_or_initialize
   end
 
   def self.create_membership(requesting_user:, joinable:, target_user:, attributes:)
@@ -48,23 +48,5 @@ class MembershipModifier
     end
 
     Membership.where(user: target_user, joinable: joinable).each(&:destroy)
-  end
-
-  private
-
-  def self.find_or_initialize(user, joinable, attributes)
-    attributes = { user: user, joinable: joinable }.merge(attributes)
-    Membership.find_or_initialize_by(
-      user: user,
-      joinable: joinable
-    ).tap do |m|
-      m.update!(attributes)
-    end
-  end
-
-  def default_attributes
-    {
-      role: 'member'
-    }
   end
 end

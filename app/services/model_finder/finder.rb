@@ -1,12 +1,13 @@
 module ModelFinder
   class Finder
-    class SubclassMustImplimentFind < NotImplementedError; end
+    class SubclassMustImplimentFindOrInitialize < NotImplementedError; end
+
     def initialize(info)
       @info = info
     end
 
-    def find
-      fail Finder::SubclassMustImplimentFind
+    def find_or_initialize
+      fail Finder::SubclassMustImplimentFindOrInitialize
     end
 
     protected
