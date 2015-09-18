@@ -17,15 +17,16 @@ A Rails application for recursive self-organizing teams with first-class Slack i
 
 Clone the application:
 
-```
-$ git@github.com:SandersForPresident/ArborApp.git
+```bash
+$ git clone git@github.com:SandersForPresident/ArborApp.git
 ```
 
 Then install the dependencies and run the migrations:
 
-```
+```bash
 $ bundle install
-$ rake db:migrate
+$ bundle exec rake db:create
+$ bundle rake db:migrate
 ```
 
 ### Configuration
@@ -43,7 +44,7 @@ Contact @schneidmaster in Slack to get the development key/secret.
 
 After installing and configuring, start a server on [http://localhost:3000](http://localhost:3000):
 
-```
+```bash
 $ rails s
 ```
 
