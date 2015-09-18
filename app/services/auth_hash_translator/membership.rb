@@ -11,7 +11,7 @@ module AuthHashTranslator
     private
 
     def role
-      return 'admin' if auth_hash['info']['is_admin']
+      return 'admin' if info['is_admin']
       'member'
     end
   end
