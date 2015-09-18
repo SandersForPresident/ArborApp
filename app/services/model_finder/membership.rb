@@ -1,6 +1,6 @@
 module ModelFinder
   class Membership < Finder
-    def find
+    def find_or_initialize
       ::Membership.find_or_initialize_by(
         user: info['user'],
         joinable: info['joinable']

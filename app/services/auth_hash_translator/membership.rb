@@ -1,6 +1,6 @@
 module AuthHashTranslator
   class Membership < Translator
-    def translate
+    def translated_attributes
       {
         slack_uid: auth_hash['uid'],
         slack_access_token: auth_hash['credentials']['token'],
