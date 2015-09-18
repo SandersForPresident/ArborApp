@@ -5,12 +5,27 @@ RSpec.describe JoinableBuilder do
 
   describe '#build_team' do
     let(:new_team_name) { 'Team Name' }
-    let(:attributes) { { name: new_team_name } }
+    let(:slack_team_id) { 'T3848YDDY' }
+    let(:slack_team_domain) { 'somedomain' }
+    let(:attributes) do
+      {
+        name: new_team_name,
+        slack_team_domain: slack_team_domain,
+        slack_team_id: slack_team_id
+      }
+    end
+    let(:membership_attributes) do
+      {
+        role: 'admin'
+      }
+    end
 
     it 'returns a newly built team with the passed in attributes' do
       expect(
-        JoinableBuilder.build_team(requesting_user: requesting_user,
-                                   attributes: attributes).name
+        JoinableBuilder.build_team(
+          requesting_user: requesting_user,
+          attributes: attributes,
+          membership_attributes: membership_attributes).name
       ).to eq(new_team_name)
     end
 
@@ -18,7 +33,8 @@ RSpec.describe JoinableBuilder do
       expect(
         JoinableBuilder.build_team(
           requesting_user: requesting_user,
-          attributes: attributes
+          attributes: attributes,
+          membership_attributes: membership_attributes
         ).admin? requesting_user
       ).to eq(true)
     end
@@ -44,8 +60,10 @@ RSpec.describe JoinableBuilder do
 
       it 'returns a newly built group with the passed in attributes' do
         expect(
-          JoinableBuilder.build_group(requesting_user: requesting_user,
-                                      attributes: attributes).name
+          JoinableBuilder.build_group(
+            requesting_user: requesting_user,
+            attributes: attributes
+          ).name
         ).to eq(new_group_name)
       end
 
@@ -65,8 +83,10 @@ RSpec.describe JoinableBuilder do
 
         it 'raises a GroupNotInTeam exception' do
           expect do
-            JoinableBuilder.build_group(requesting_user: requesting_user,
-                                        attributes: attributes)
+            JoinableBuilder.build_group(
+              requesting_user: requesting_user,
+              attributes: attributes
+            )
           end.to raise_error(JoinableBuilder::GroupNotInTeam)
         end
       end
@@ -76,8 +96,10 @@ RSpec.describe JoinableBuilder do
             hierarchy" do
       it 'raises a RequestingUserNotAdmin exception' do
         expect do
-          JoinableBuilder.build_group(requesting_user: requesting_user,
-                                      attributes: attributes)
+          JoinableBuilder.build_group(
+            requesting_user: requesting_user,
+            attributes: attributes
+          )
         end.to raise_error(JoinableBuilder::RequestingUserNotAdmin)
       end
     end
