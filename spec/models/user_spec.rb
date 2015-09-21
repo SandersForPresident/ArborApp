@@ -14,9 +14,9 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_presence_of(:email) }
   end
 
-  describe '::auth_find_or_create' do
+  describe '::find_or_create_with_auth_hash' do
     it 'return a User with the correct info' do
-      user = User.auth_find_or_create(auth_user_hash)
+      user = User.find_or_create_with_auth_hash(auth_user_hash)
       expect(user).to be_a User
       expect(user.email).to eq auth_user_hash['email']
       expect(user.name).to eq auth_user_hash['name']
@@ -33,13 +33,13 @@ RSpec.describe User, type: :model do
       end
 
       it 'does not duplicate an existing user' do
-        expect { User.auth_find_or_create(auth_user_hash) }.to_not(
+        expect { User.find_or_create_with_auth_hash(auth_user_hash) }.to_not(
           change(User, :count)
         )
       end
 
       it 'updates the users info' do
-        user = User.auth_find_or_create(auth_user_hash)
+        user = User.find_or_create_with_auth_hash(auth_user_hash)
         expect(user.avatar).to eq auth_user_hash['avatar']
       end
     end

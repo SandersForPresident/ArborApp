@@ -23,14 +23,14 @@ RSpec.describe Membership, type: :model do
     )
   end
 
-  describe '::auth_find_or_create' do
+  describe '::find_or_create_with_auth_hash' do
     it 'return a Membership with the correct info' do
       user = create_user
       team = create_team
-      membership = Membership.auth_find_or_create(
-        user,
-        team,
-        auth_membership_hash
+      membership = Membership.find_or_create_with_auth_hash(
+        user: user,
+        team: team,
+        auth_membership_hash: auth_membership_hash
       )
       expect(membership).to be_a Membership
       expect(membership.user).to eq user
@@ -60,19 +60,19 @@ RSpec.describe Membership, type: :model do
 
       it 'does not duplicate an existing membership' do
         expect do
-          Membership.auth_find_or_create(
-            @user,
-            @team,
-            auth_membership_hash
+          Membership.find_or_create_with_auth_hash(
+            user: @user,
+            team: @team,
+            auth_membership_hash: auth_membership_hash
           )
         end.to_not change(Membership, :count)
       end
 
       it 'updates the memberships info' do
-        membership = Membership.auth_find_or_create(
-          @user,
-          @team,
-          auth_membership_hash
+        membership = Membership.find_or_create_with_auth_hash(
+          user: @user,
+          team: @team,
+          auth_membership_hash: auth_membership_hash
         )
         expect(membership.role).to eq auth_membership_hash['role']
       end

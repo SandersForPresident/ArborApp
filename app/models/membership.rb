@@ -6,7 +6,7 @@ class Membership < ActiveRecord::Base
 
   enum role: { member: 0, admin: 1 }
 
-  def self.auth_find_or_create(user, team, auth_membership_hash)
+  def self.find_or_create_with_auth_hash(user:, team:, auth_membership_hash:)
     find_or_initialize_by(
       user: user,
       joinable: team

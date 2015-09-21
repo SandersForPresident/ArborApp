@@ -9,5 +9,19 @@ RSpec.describe UserInitializer do
       expect(user.email).to eq auth_hash_user_email
       expect(user.name).to eq auth_hash_user_name
     end
+
+    context "when the indicated team doesn't exist" do
+      it 'creates a new team' do
+        expect do
+          UserInitializer.initialize_and_return_user(auth_hash)
+        end.to change(Team, :count).by(1)
+      end
+
+      it 'creates a new membership' do
+        expect do
+          UserInitializer.initialize_and_return_user(auth_hash)
+        end.to change(Membership, :count).by(1)
+      end
+    end
   end
 end

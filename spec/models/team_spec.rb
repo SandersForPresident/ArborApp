@@ -14,9 +14,9 @@ RSpec.describe Team, type: :model do
     it { is_expected.to validate_presence_of(:slack_team_id) }
   end
 
-  describe '::auth_find_or_create' do
+  describe '::find_or_create_with_auth_hash' do
     it 'return a Team with the correct info' do
-      team = Team.auth_find_or_create(auth_team_hash)
+      team = Team.find_or_create_with_auth_hash(auth_team_hash)
       expect(team).to be_a Team
       expect(team.slack_team_id).to eq auth_team_hash['slack_team_id']
       expect(team.slack_team_domain).to eq auth_team_hash['slack_team_domain']
@@ -33,13 +33,13 @@ RSpec.describe Team, type: :model do
       end
 
       it 'does not duplicate an existing team' do
-        expect { Team.auth_find_or_create(auth_team_hash) }.to_not(
+        expect { Team.find_or_create_with_auth_hash(auth_team_hash) }.to_not(
           change(Team, :count)
         )
       end
 
       it 'updates the teams info' do
-        team = Team.auth_find_or_create(auth_team_hash)
+        team = Team.find_or_create_with_auth_hash(auth_team_hash)
         expect(team.name).to eq auth_team_hash['name']
       end
     end

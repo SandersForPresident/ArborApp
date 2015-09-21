@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   validates :email, presence: true, uniqueness: true
 
-  def self.auth_find_or_create(auth_user_hash)
+  def self.find_or_create_with_auth_hash(auth_user_hash)
     find_or_initialize_by(
       email: auth_user_hash['email']
     ).tap do |user|
