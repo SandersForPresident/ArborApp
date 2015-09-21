@@ -6,11 +6,8 @@ class JoinableCreator
   def self.create_team(requesting_user:, attributes:, membership_attributes:)
     team = Team.create(attributes)
 
-    MembershipModifier.create_membership(
-      requesting_user: nil,
-      joinable: team,
-      target_user: requesting_user,
-      attributes: membership_attributes
+    Membership.create(
+      membership_attributes.merge(user: requesting_user, joinable: team)
     )
 
     team
