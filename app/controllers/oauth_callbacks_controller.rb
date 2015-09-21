@@ -1,6 +1,6 @@
 class OauthCallbacksController < ApplicationController
   def show
-    user = Authenticator.new(auth_hash).authenticate
+    user = UserInitializer.initialize_and_return_user(auth_hash)
     sign_in(user)
     redirect_to root_path, notice: t('.success', email: user.email)
   end

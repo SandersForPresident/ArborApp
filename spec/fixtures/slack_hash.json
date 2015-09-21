@@ -4,9 +4,83 @@
   "info": {
     "name": "Joe Bloggs",
     "image": "http://www.gravatar.com/avatar/nope",
-    "email": "someemail@email.com"
+    "email": "someemail@email.com",
+    "nickname": "mynickname",
+    "first_name": "Joe",
+    "last_name": "Bloggs",
+    "description": null,
+    "team": "Coders For Sanders",
+    "user": "myusername",
+    "team_id": "T072EJ605",
+    "team_domain": "codersforsanders",
+    "user_id": "U0A9FQNUU",
+    "is_admin": true,
+    "is_owner": false
   },
   "credentials": {
-    "token": "SOME_TOKEN"
+    "token": "SOME_TOKEN",
+    "expires": false
+  },
+  "extra": {
+    "raw_info": {
+      "ok": true,
+      "url": "https://codersforsanders.slack.com/",
+      "team": "Coders For Sanders",
+      "user": "fosberyi",
+      "team_id": "T072EJ605",
+      "user_id": "U0A9FQNUU"
+    },
+    "user_info": {
+      "ok": true,
+      "user": {
+        "id": "U0A9FQNUU",
+        "name": "fosberyi",
+        "deleted": false,
+        "status": null,
+        "color": "db3150",
+        "real_name": "Ian Fosbery",
+        "tz": "America/Indiana/Indianapolis",
+        "tz_label": "Eastern Daylight Time",
+        "tz_offset": -14400,
+        "profile": {
+          "first_name": "Ian",
+          "last_name": "Fosbery",
+          "real_name": "Ian Fosbery",
+          "real_name_normalized": "Ian Fosbery",
+          "email": "ian@nmrkt.com",
+          "image_24": "https://secure.gravatar.com/avatar/097d53e3b193f28cd92bba4bf4e0bae4.jpg?s=24&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F66f9%2Fimg%2Favatars%2Fava_0009-24.png",
+          "image_32": "https://secure.gravatar.com/avatar/097d53e3b193f28cd92bba4bf4e0bae4.jpg?s=32&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F66f9%2Fimg%2Favatars%2Fava_0009-32.png",
+          "image_48": "https://secure.gravatar.com/avatar/097d53e3b193f28cd92bba4bf4e0bae4.jpg?s=48&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F66f9%2Fimg%2Favatars%2Fava_0009-48.png",
+          "image_72": "https://secure.gravatar.com/avatar/097d53e3b193f28cd92bba4bf4e0bae4.jpg?s=72&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F66f9%2Fimg%2Favatars%2Fava_0009-72.png",
+          "image_192": "https://secure.gravatar.com/avatar/097d53e3b193f28cd92bba4bf4e0bae4.jpg?s=192&d=https%3A%2F%2Fslack.global.ssl.fastly.net%2F66f9%2Fimg%2Favatars%2Fava_0009.png"
+        },
+        "is_admin": false,
+        "is_owner": false,
+        "is_primary_owner": false,
+        "is_restricted": false,
+        "is_ultra_restricted": false,
+        "is_bot": false,
+        "has_files": true,
+        "has_2fa": false
+      }
+    },
+    "team_info": {
+      "ok": true,
+      "team": {
+        "id": "T072EJ605",
+        "name": "Coders For Sanders",
+        "domain": "codersforsanders",
+        "email_domain": "",
+        "icon": {
+          "image_34": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2015-07-28/8323149237_a0682d58b9746c9ae51d_34.jpg",
+          "image_44": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2015-07-28/8323149237_a0682d58b9746c9ae51d_44.jpg",
+          "image_68": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2015-07-28/8323149237_a0682d58b9746c9ae51d_68.jpg",
+          "image_88": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2015-07-28/8323149237_a0682d58b9746c9ae51d_88.jpg",
+          "image_102": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2015-07-28/8323149237_a0682d58b9746c9ae51d_102.jpg",
+          "image_132": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2015-07-28/8323149237_a0682d58b9746c9ae51d_132.jpg",
+          "image_original": "https://s3-us-west-2.amazonaws.com/slack-files2/avatars/2015-07-28/8323149237_a0682d58b9746c9ae51d_original.jpg"
+        }
+      }
+    }
   }
 }

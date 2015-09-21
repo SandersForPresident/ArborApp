@@ -4,16 +4,15 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = JoinableBuilder.build(requesting_user: current_user,
-                                   type: :group,
-                                   attributes: group_params)
+    @group = JoinableCreator.create_group(requesting_user: current_user,
+                                          attributes: group_params)
 
-    if @group.save
+    if @group
       redirect_to @group
     else
       render 'new'
     end
-  rescue ApplicationService::RequestingUserNotAdmin
+  rescue JoinableCreator::RequestingUserNotAdmin
     render 'new'
   end
 
