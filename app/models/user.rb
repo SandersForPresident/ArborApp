@@ -10,4 +10,12 @@ class User < ActiveRecord::Base
            source_type: 'Group'
 
   validates :email, presence: true, uniqueness: true
+
+  def self.auth_find_or_create(auth_user_hash)
+    find_or_initialize_by(
+      email: auth_user_hash['email']
+    ).tap do |user|
+      user.update!(auth_user_hash)
+    end
+  end
 end

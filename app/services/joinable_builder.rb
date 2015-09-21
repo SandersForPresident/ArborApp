@@ -4,14 +4,16 @@ class JoinableBuilder
   class NoTeamProvided < StandardError; end
 
   def self.build_team(requesting_user:, attributes:, membership_attributes:)
-    ModelFinder.for(Team, attributes).find_or_initialize.tap do |team|
-      MembershipModifier.find_or_initialize_membership(
-        requesting_user: nil,
-        joinable: team,
-        target_user: requesting_user,
-        attributes: membership_attributes
-      )
-    end
+    team = Team.new(attributes)
+
+    MembershipModifier.create_membership(
+      requesting_user: nil,
+      joinable: team,
+      target_user: requesting_user,
+      attributes: membership_attributes
+    )
+
+    team
   end
 
   def self.build_group(requesting_user:, attributes:)

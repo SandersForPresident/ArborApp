@@ -13,7 +13,6 @@ RSpec.feature 'Authentication' do
             email: 'someemail@email.com'
           )
         )
-        expect(User.where(name: 'Joe Bloggs').count).to eq(1)
       end
     end
 

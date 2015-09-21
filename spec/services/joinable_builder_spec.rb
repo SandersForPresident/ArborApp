@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe JoinableBuilder do
   let(:requesting_user) { FactoryGirl.create(:user) }
 
-  describe '#build_team' do
+  describe '::build_team' do
     let(:new_team_name) { 'Team Name' }
     let(:slack_team_id) { 'T3848YDDY' }
     let(:slack_team_domain) { 'somedomain' }
@@ -40,7 +40,7 @@ RSpec.describe JoinableBuilder do
     end
   end
 
-  describe '#build_group' do
+  describe '::build_group' do
     let(:new_group_name) { 'Group Name' }
     let(:team) { FactoryGirl.create(:team) }
     let(:attributes) do

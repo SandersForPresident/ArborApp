@@ -11,7 +11,8 @@ require 'capybara/rspec'
 require 'rack_session_access/capybara'
 require 'shoulda/matchers'
 require 'support/factory_girl'
-require 'support/mock_helpers'
+require 'support/features/mock_helpers'
+require 'support/features/auth_hash_helpers'
 require 'support/i18n'
 require 'webmock/rspec'
 
@@ -24,6 +25,7 @@ OmniAuth.config.logger = Rails.logger
 
 RSpec.configure do |config|
   config.include Features::MockHelpers, type: :feature
+  config.include Features::AuthHashHelpers
   config.include Monban::Test::ControllerHelpers, type: :controller
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 

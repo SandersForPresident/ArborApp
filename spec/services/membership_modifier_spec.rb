@@ -15,7 +15,7 @@ RSpec.describe MembershipModifier do
     membership_attributes.merge(role: 'admin')
   end
 
-  describe '#update_membership' do
+  describe '::update_membership' do
     context 'when requesting_user is not an admin of target_joinable' do
       it 'raises a RequestingUserNotAdmin exception' do
         expect do
@@ -71,7 +71,7 @@ RSpec.describe MembershipModifier do
     end
   end
 
-  describe '#destroy_membership' do
+  describe '::destroy_membership' do
     context 'when target_user is a member of target_joinable' do
       before do
         FactoryGirl.create(:group_member_membership,
@@ -110,7 +110,7 @@ RSpec.describe MembershipModifier do
     end
   end
 
-  describe '#create_membership' do
+  describe '::create_membership' do
     context 'when requesting_user is not an admin of target_joinable' do
       it 'raises a RequestingUserNotAdmin exception' do
         expect do
