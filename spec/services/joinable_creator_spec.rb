@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe JoinableBuilder do
+RSpec.describe JoinableCreator do
   let(:requesting_user) { FactoryGirl.create(:user) }
 
-  describe '::build_team' do
+  describe '::create_team' do
     let(:new_team_name) { 'Team Name' }
     let(:slack_team_id) { 'T3848YDDY' }
     let(:slack_team_domain) { 'somedomain' }
@@ -20,18 +20,27 @@ RSpec.describe JoinableBuilder do
       }
     end
 
-    it 'returns a newly built team with the passed in attributes' do
+    it 'creates a new team' do
+      expect do
+        JoinableCreator.create_team(
+          requesting_user: requesting_user,
+          attributes: attributes,
+          membership_attributes: membership_attributes)
+      end.to change(Team, :count).by(1)
+    end
+
+    it 'returns a newly created team with the passed in attributes' do
       expect(
-        JoinableBuilder.build_team(
+        JoinableCreator.create_team(
           requesting_user: requesting_user,
           attributes: attributes,
           membership_attributes: membership_attributes).name
       ).to eq(new_team_name)
     end
 
-    it 'makes the requesting_user an admin of the newly built team' do
+    it 'makes the requesting_user an admin of the newly created team' do
       expect(
-        JoinableBuilder.build_team(
+        JoinableCreator.create_team(
           requesting_user: requesting_user,
           attributes: attributes,
           membership_attributes: membership_attributes
@@ -40,7 +49,7 @@ RSpec.describe JoinableBuilder do
     end
   end
 
-  describe '::build_group' do
+  describe '::create_group' do
     let(:new_group_name) { 'Group Name' }
     let(:team) { FactoryGirl.create(:team) }
     let(:attributes) do
@@ -50,7 +59,7 @@ RSpec.describe JoinableBuilder do
       }
     end
 
-    context "when requesting_user is an admin of newly built group's \
+    context "when requesting_user is an admin of newly created group's \
             hierarchy" do
       before do
         FactoryGirl.create(:team_admin_membership,
@@ -58,18 +67,27 @@ RSpec.describe JoinableBuilder do
                            joinable: team)
       end
 
-      it 'returns a newly built group with the passed in attributes' do
+      it 'creates a new group' do
+        expect do
+          JoinableCreator.create_group(
+            requesting_user: requesting_user,
+            attributes: attributes
+          )
+        end.to change(Group, :count).by(1)
+      end
+
+      it 'returns a newly created group with the passed in attributes' do
         expect(
-          JoinableBuilder.build_group(
+          JoinableCreator.create_group(
             requesting_user: requesting_user,
             attributes: attributes
           ).name
         ).to eq(new_group_name)
       end
 
-      it 'makes the requesting_user an admin of the newly built group' do
+      it 'makes the requesting_user an admin of the newly created group' do
         expect(
-          JoinableBuilder.build_group(
+          JoinableCreator.create_group(
             requesting_user: requesting_user,
             attributes: attributes
           ).admin? requesting_user
@@ -83,24 +101,24 @@ RSpec.describe JoinableBuilder do
 
         it 'raises a GroupNotInTeam exception' do
           expect do
-            JoinableBuilder.build_group(
+            JoinableCreator.create_group(
               requesting_user: requesting_user,
               attributes: attributes
             )
-          end.to raise_error(JoinableBuilder::GroupNotInTeam)
+          end.to raise_error(JoinableCreator::GroupNotInTeam)
         end
       end
     end
 
-    context "when requesting_user is not an admin of newly built group's \
+    context "when requesting_user is not an admin of newly created group's \
             hierarchy" do
       it 'raises a RequestingUserNotAdmin exception' do
         expect do
-          JoinableBuilder.build_group(
+          JoinableCreator.create_group(
             requesting_user: requesting_user,
             attributes: attributes
           )
-        end.to raise_error(JoinableBuilder::RequestingUserNotAdmin)
+        end.to raise_error(JoinableCreator::RequestingUserNotAdmin)
       end
     end
   end
