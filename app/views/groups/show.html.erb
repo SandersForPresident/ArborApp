@@ -1,6 +1,17 @@
 <div class='container'>
   <h3><%= @group.name %></h3>
-  <% if @admin %>
+  <% if !(@current_user_applied_to_group || @group.contains?(@current_user)) %>
+    <div id='join-group'>
+      <%= form_for(@membership, remote: true) do |f| %>
+        <%= hidden_field_tag 'membership[user_id]', @current_user.id %>
+        <%= hidden_field_tag 'membership[group_id]', @group.id %>
+        <%= f.submit 'Join Group', class: 'btn btn-default' %>
+      <% end %>
+    </div>
+  <% elsif @current_user_applied_to_group %>
+    <p>Application Pending</p>
+  <% end %>
+  <% if @current_user_is_admin %>
     <%= link_to 'Create Sub-Group',
                 new_group_path(parent_group: @group, team: @group.team) %>
   <% end %>

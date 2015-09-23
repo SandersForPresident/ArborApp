@@ -23,8 +23,11 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @group = Group.find(params[:id])
-    @admin = @group.admin? current_user
+    @group = Group.find params[:id]
+    @membership = Membership.new
+    @current_user_is_admin = @group.admin? current_user
+    @current_user_applied_to_group = @group.pending_application? current_user
+    @current_user = current_user
   end
 
   private

@@ -8,7 +8,9 @@ class JoinableCreator
 
     Membership.create(
       membership_attributes.merge(user: requesting_user, joinable: team)
-    ).joinable
+    ).approve!
+
+    team
   end
 
   def self.create_group(requesting_user:, attributes:)

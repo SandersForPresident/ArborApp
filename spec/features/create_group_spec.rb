@@ -20,7 +20,7 @@ RSpec.feature 'Admins can create groups', type: :feature do
           :team_admin_membership,
           user: user,
           joinable: team
-        )
+        ).approve!
       end
 
       context "and visits their team's page" do

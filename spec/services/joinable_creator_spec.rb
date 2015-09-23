@@ -64,7 +64,7 @@ RSpec.describe JoinableCreator do
       before do
         FactoryGirl.create(:team_admin_membership,
                            user: requesting_user,
-                           joinable: team)
+                           joinable: team).approve!
       end
 
       it 'creates a new group' do

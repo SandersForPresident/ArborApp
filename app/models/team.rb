@@ -15,7 +15,9 @@ class Team < ActiveRecord::Base
     has_membership = "#{membership_type}?".to_sym
 
     define_method has_membership do |user|
-      memberships.where(user: user).any?(&has_membership)
+      memberships.where(user: user).any? do |membership|
+        membership.send(has_membership) && membership.approved?
+      end
     end
   end
 end
