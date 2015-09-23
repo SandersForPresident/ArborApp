@@ -1,10 +1,10 @@
 FactoryGirl.define do
   factory :membership do
+    association :joinable, factory: :group
     user
+    role :member
 
     factory :group_member_membership do
-      association :joinable, factory: :group
-
       factory :group_admin_membership do
         role :admin
       end

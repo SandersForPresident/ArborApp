@@ -21,7 +21,7 @@ class UserInitializer
         team: team,
         auth_membership_hash:
         AuthHashTranslator.for(Membership, auth_hash).translated_attributes
-      )
+      ).approve!
     end
   end
 end

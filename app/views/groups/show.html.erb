@@ -1,7 +1,7 @@
 <div class='container'>
-  <h3><%= @group.name %></h3>
-  <% if @admin %>
-    <%= link_to 'Create Sub-Group',
-                new_group_path(parent_group: @group, team: @group.team) %>
-  <% end %>
+  <h3><%= @groups_presenter.name %></h3>
+  <div id='join-group'>
+    <%= @groups_presenter.join_button_or_application_status self %>
+  </div>
+  <%= @groups_presenter.create_sub_group_button self %>
 </div>

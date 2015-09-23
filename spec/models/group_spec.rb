@@ -14,7 +14,7 @@ RSpec.describe Group, type: :model do
 
     context 'when user is an admin of the group' do
       before do
-        FactoryGirl.create(:group_admin_membership, user: user, joinable: group)
+        FactoryGirl.create(:group_admin_membership, user: user, joinable: group).approve!
       end
 
       it 'returns true' do
@@ -26,7 +26,7 @@ RSpec.describe Group, type: :model do
       before do
         FactoryGirl.create(:group_admin_membership,
                            user: user,
-                           joinable: group.team)
+                           joinable: group.team).approve!
       end
 
       it 'returns true' do
@@ -38,7 +38,7 @@ RSpec.describe Group, type: :model do
       before do
         FactoryGirl.create(:group_admin_membership,
                            user: user,
-                           joinable: group.parent_group)
+                           joinable: group.parent_group).approve!
       end
 
       it 'returns true' do
@@ -50,7 +50,7 @@ RSpec.describe Group, type: :model do
       before do
         FactoryGirl.create(:group_admin_membership,
                            user: user,
-                           joinable: group.parent_group.parent_group)
+                           joinable: group.parent_group.parent_group).approve!
       end
 
       it 'returns true' do
@@ -74,7 +74,7 @@ RSpec.describe Group, type: :model do
       before do
         FactoryGirl.create(:group_member_membership,
                            user: user,
-                           joinable: group)
+                           joinable: group).approve!
       end
 
       it 'returns true' do
@@ -86,7 +86,7 @@ RSpec.describe Group, type: :model do
       before do
         FactoryGirl.create(:group_member_membership,
                            user: user,
-                           joinable: group.team)
+                           joinable: group.team).approve!
       end
 
       it 'returns true' do
@@ -98,7 +98,7 @@ RSpec.describe Group, type: :model do
       before do
         FactoryGirl.create(:group_member_membership,
                            user: user,
-                           joinable: group.parent_group)
+                           joinable: group.parent_group).approve!
       end
 
       it 'returns true' do
@@ -110,7 +110,7 @@ RSpec.describe Group, type: :model do
       before do
         FactoryGirl.create(:group_member_membership,
                            user: user,
-                           joinable: group.parent_group.parent_group)
+                           joinable: group.parent_group.parent_group).approve!
       end
 
       it 'returns true' do

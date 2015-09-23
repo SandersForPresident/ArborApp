@@ -27,7 +27,9 @@ class Group < ActiveRecord::Base
     private has_team_membership
 
     define_method has_self_membership do |user|
-      memberships.where(user: user).any?(&has_membership)
+      memberships.where(user: user).any? do |membership|
+        membership.send(has_membership) && membership.approved?
+      end
     end
     private has_self_membership
 
