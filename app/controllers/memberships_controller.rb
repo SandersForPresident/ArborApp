@@ -15,10 +15,6 @@ class MembershipsController < ApplicationController
 
   private
 
-  def membership_params
-    params.require(:membership).permit(:user_id, :group_id)
-  end
-
   def joinable_from_params(params)
     Group.find_by_id(params[:membership][:group_id]) ||
       Team.find_by_id(params[:membership][:team_id]) ||
