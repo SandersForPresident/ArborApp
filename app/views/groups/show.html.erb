@@ -1,8 +1,13 @@
 <div class='container'>
   <h3><%= @groups_presenter.name %></h3>
-  <div id='join-group'>
-    <%= @groups_presenter.join_button_or_application_status self %>
-  </div>
-  <%= @groups_presenter.create_sub_group_button self %>
-  <%= @groups_presenter.pending_applications self %>
+  <%= @groups_presenter.join_group_component self %>
+  <%= @groups_presenter.create_sub_group_link self %>
+  <% if @groups_presenter.pending_applications.any? %>
+    <h3>Pending Membership Applications</h3>
+    <ul>
+      <%= render partial: '/partials/pending_membership_application_list',
+                 collection: @groups_presenter.pending_applications,
+                 as: :item %>
+    </ul>
+  <% end %>
 </div>

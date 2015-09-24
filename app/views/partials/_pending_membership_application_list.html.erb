@@ -1,0 +1,9 @@
+<li id='pending-membership-<%= item.id %>'>
+  <%= item.user.name %>
+  <%= button_to [:approve, item], remote: true, method: :put do %>
+    'Approve'
+  <% end %>
+  <%= button_to [:deny, item], remote: true, method: :put do %>
+    'Deny'
+  <% end %>
+</li>
