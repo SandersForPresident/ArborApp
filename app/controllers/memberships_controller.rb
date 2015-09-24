@@ -13,6 +13,26 @@ class MembershipsController < ApplicationController
     end
   end
 
+  def approve
+    @membership = Membership.find_by_id(params[:id])
+    if @membership && @membership.joinable.admin?(current_user)
+      @membership.approve!
+      render 'approve.js'
+    else
+      render 'approve_failure.js'
+    end
+  end
+
+  def deny
+    @membership = Membership.find_by_id(params[:id])
+    if @membership && @membership.joinable.admin?(current_user)
+      @membership.deny!
+      render 'deny.js'
+    else
+      render 'deny_failure.js'
+    end
+  end
+
   private
 
   def joinable_from_params(params)

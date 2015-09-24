@@ -10,14 +10,13 @@ RSpec.feature 'User can apply to join group', type: :feature do
   end
 
   context 'when a user is on a group page that they are already a member of' do
-    let(:approved_membership) do
+    let!(:approved_membership) do
       FactoryGirl.create(:group_admin_membership,
                          user: user,
                          joinable: group).approve!
     end
 
     before do
-      approved_membership
       visit "/groups/#{group.id}"
     end
 

@@ -24,4 +24,12 @@ module Joinable
     membership = memberships.find_by(user: user) || false
     membership && membership.pending?
   end
+
+  def pending_applications?
+    pending_applications.any?
+  end
+
+  def pending_applications
+    memberships.select(&:pending?)
+  end
 end
