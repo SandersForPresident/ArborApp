@@ -13,23 +13,14 @@ class MembershipsController < ApplicationController
     end
   end
 
-  def approve
+  def update
+    state_transition = params[:membership][:state_transition]
     @membership = Membership.find_by_id(params[:id])
-    if @membership && @membership.joinable.admin?(current_user)
-      @membership.approve!
-      render 'approve.js'
+    if @membership && @membership.joinable.admin?(current_user) && state_transition
+      @membership.send("#{state_transition}!")
+      render "#{state_transition}.js"
     else
-      render 'approve_failure.js'
-    end
-  end
-
-  def deny
-    @membership = Membership.find_by_id(params[:id])
-    if @membership && @membership.joinable.admin?(current_user)
-      @membership.deny!
-      render 'deny.js'
-    else
-      render 'deny_failure.js'
+      render "#{state_transition}_failure.js"
     end
   end
 

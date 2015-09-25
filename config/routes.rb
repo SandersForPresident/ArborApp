@@ -4,12 +4,7 @@ Rails.application.routes.draw do
   resources :skills, only: [:show]
   resources :groups, only: [:index, :show, :new, :create]
   resources :teams, only: [:show]
-  resources :memberships, only: [:create] do
-    member do
-      put :approve
-      put :deny
-    end
-  end
+  resources :memberships, only: [:create, :update]
 
   get '/auth/:provider/callback', to: 'oauth_callbacks#show'
   get '/auth/failure', to: 'oauth_failures#show'
