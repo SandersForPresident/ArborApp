@@ -30,3 +30,6 @@
 
 # Ignore rspec examples.txt
 /spec/examples.txt
+
+# To not force people to use overcommit gem.
+.overcommit.yml

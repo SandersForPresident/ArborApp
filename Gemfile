@@ -47,7 +47,7 @@ group :test do
   gem 'poltergeist', '~> 1.5.0'
   gem 'rack_session_access', '~> 0.1.1'
   gem 'rspec-rails', '~> 3.1'
-  gem 'shoulda-matchers'
+  gem 'shoulda-matchers', '2.8.0'
   gem 'simplecov', '~> 0.10.0'
   gem 'terminal-notifier-guard', '~> 1.6.1'
   gem 'webmock', '~> 1.18.0'
