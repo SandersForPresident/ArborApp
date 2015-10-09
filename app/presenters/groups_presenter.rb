@@ -1,5 +1,5 @@
 class GroupsPresenter
-  def initialize(group: group, current_user: current_user)
+  def initialize(group:, current_user:)
     @group = group
     @current_user = current_user
   end
