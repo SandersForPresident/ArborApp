@@ -8,13 +8,13 @@ class Group < ActiveRecord::Base
 
   def admin?(user)
     team.admin?(user) ||
-    memberships.where(user: user).any? { |m| m.admin? && m.approved? } ||
-    !!parent_group && parent_group.admin?(user)
+      memberships.where(user: user).any? { |m| m.admin? && m.approved? } ||
+      parent_group.present? && parent_group.admin?(user)
   end
 
   def member?(user)
     team.member?(user) ||
-    memberships.where(user: user).any? { |m| m.member? && m.approved? } ||
-    !!parent_group && parent_group.member?(user)
+      memberships.where(user: user).any? { |m| m.member? && m.approved? } ||
+      parent_group.present? && parent_group.member?(user)
   end
 end
