@@ -11,11 +11,11 @@ class Team < ActiveRecord::Base
     end
   end
 
-  [:admin, :member].each do |membership_type|
-    has_membership = "#{membership_type}?".to_sym
+  def admin?(user)
+    memberships.where(user: user).any? { |m| m.admin? && m.approved? }
+  end
 
-    define_method has_membership do |user|
-      memberships.where(user: user).any?(&has_membership)
-    end
+  def member?(user)
+    memberships.where(user: user).any? { |m| m.member? && m.approved? }
   end
 end

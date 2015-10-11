@@ -23,6 +23,19 @@ RSpec.describe Membership, type: :model do
     )
   end
 
+  describe 'has a state that' do
+    let(:membership) { FactoryGirl.create(:group_member_membership) }
+    it 'is initially pending' do
+      expect(membership.pending?).to eq(true)
+    end
+
+    it 'is approved after calling #approve!' do
+      membership.approve!
+      expect(membership.pending?).to eq(false)
+      expect(membership.approved?).to eq(true)
+    end
+  end
+
   describe '::find_or_create_with_auth_hash' do
     it 'return a Membership with the correct info' do
       user = create_user

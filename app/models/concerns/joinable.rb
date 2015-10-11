@@ -19,4 +19,9 @@ module Joinable
   def contains?(user)
     admin?(user) || member?(user)
   end
+
+  def pending_application?(user)
+    membership = memberships.find_by(user: user) || false
+    membership && membership.pending?
+  end
 end

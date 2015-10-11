@@ -23,8 +23,8 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @group = Group.find(params[:id])
-    @admin = @group.admin? current_user
+    @groups_presenter = GroupsPresenter.new(group: Group.find(params[:id]),
+                                            current_user: current_user)
   end
 
   private

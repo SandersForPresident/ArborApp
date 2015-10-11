@@ -14,6 +14,43 @@ RSpec.describe Team, type: :model do
     it { is_expected.to validate_presence_of(:slack_team_id) }
   end
 
+  describe '#admin?' do
+    let(:user) { FactoryGirl.create(:user) }
+    let(:team) { FactoryGirl.create(:team) }
+
+    it 'returns true if user is an approved admin' do
+      FactoryGirl.create(:team_admin_membership,
+                         user: user, joinable: team).approve!
+
+      expect(team.admin? user).to eq(true)
+    end
+
+    it 'returns false if user is an approved member' do
+      FactoryGirl.create(:team_member_membership,
+                         user: user, joinable: team).approve!
+
+      expect(team.admin? user).to eq(false)
+    end
+
+    it 'returns false if user is an unapproved admin' do
+      FactoryGirl.create(:team_admin_membership,
+                         user: user, joinable: team)
+
+      expect(team.admin? user).to eq(false)
+    end
+
+    it 'returns false if user is an unapproved member' do
+      FactoryGirl.create(:team_member_membership,
+                         user: user, joinable: team)
+
+      expect(team.admin? user).to eq(false)
+    end
+
+    it 'returns false if user is not an admin or a member' do
+      expect(team.admin? user).to eq(false)
+    end
+  end
+
   describe '::find_or_create_with_auth_hash' do
     it 'return a Team with the correct info' do
       team = Team.find_or_create_with_auth_hash(auth_team_hash)

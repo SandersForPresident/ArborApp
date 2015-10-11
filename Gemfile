@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.2.3'
 
+gem 'aasm'
 gem 'bundler', '>= 1.8.4'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'i18n-tasks'
