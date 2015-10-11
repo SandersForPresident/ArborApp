@@ -3,16 +3,23 @@ require 'rails_helper'
 RSpec.feature 'Authentication' do
   context 'using slack' do
     context 'when authentication succeeds' do
-      before { mock_slack }
+      before do
+        mock_slack
+        visit '/auth/slack'
+      end
 
       scenario 'logs in the user' do
-        visit '/auth/slack'
         expect(page).to have_content(
           t(
             'oauth_callbacks.show.success',
             email: 'someemail@email.com'
           )
         )
+      end
+
+      scenario 'changes the login text' do
+        expect(page).not_to have_content("Sign In With Slack")
+        expect(page).to have_content("Sign Out")
       end
     end
 
