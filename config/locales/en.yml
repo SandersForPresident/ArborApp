@@ -8,3 +8,7 @@ en:
   sessions:
     destroy:
       success: "Successfully logged out!"
+  application:
+    navigation:
+      sign_in: "Sign In With Slack"
+      sign_out: "Sign Out"

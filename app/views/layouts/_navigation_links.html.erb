@@ -1,7 +1,3 @@
 <li class="">
-<% if current_user %>
-  <%= link_to "Sign Out", logout_path, class: 'navbar-brand' %>
-<% else %>
-  <%= link_to 'Sign In With Slack', login_path('slack'), class: 'navbar-brand' %>
-<% end %>
+<%= sign_in_link(current_user) %>
 </li>
