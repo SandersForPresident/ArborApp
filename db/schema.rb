@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20151011034744) do
     t.datetime "updated_at",                     null: false
     t.string   "slack_uid"
     t.string   "slack_access_token"
+    t.string   "aasm_state"
   end
 
   create_table "memberships_skills", force: :cascade do |t|
