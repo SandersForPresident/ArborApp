@@ -1,11 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe SessionsController, type: :controller do
-
   let(:user) { create :user }
 
   describe '#destroy' do
-    it "deletes the cookie" do
+    it 'deletes the cookie' do
       cookies.signed[:auth_token] = user.auth_token
       get :destroy
       token = cookies.signed[:auth_token]

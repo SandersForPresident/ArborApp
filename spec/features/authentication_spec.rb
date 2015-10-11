@@ -18,8 +18,8 @@ RSpec.feature 'Authentication' do
       end
 
       scenario 'changes the login text' do
-        expect(page).not_to have_content("Sign In With Slack")
-        expect(page).to have_content("Sign Out")
+        expect(page).not_to have_content('Sign In With Slack')
+        expect(page).to have_content('Sign Out')
       end
     end
 

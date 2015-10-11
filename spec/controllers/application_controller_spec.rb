@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe ApplicationController, type: :controller do
-
   controller do
     def index
       @current_user = current_user
