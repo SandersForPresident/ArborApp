@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
            source_type: 'Group'
 
   validates :email, presence: true, uniqueness: true
+  has_secure_token :auth_token
 
   def self.find_or_create_with_auth_hash(auth_user_hash)
     find_or_initialize_by(
