@@ -13,6 +13,17 @@ class MembershipsController < ApplicationController
     end
   end
 
+  def update
+    state_transition = params[:membership][:state_transition]
+    @membership = Membership.find_by_id(params[:id])
+    if @membership && @membership.joinable.admin?(current_user) && state_transition
+      @membership.send("#{state_transition}!")
+      render "#{state_transition}.js"
+    else
+      render "#{state_transition}_failure.js"
+    end
+  end
+
   private
 
   def joinable_from_params(params)

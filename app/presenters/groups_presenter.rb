@@ -8,7 +8,7 @@ class GroupsPresenter
     group.name
   end
 
-  def create_sub_group_button(view)
+  def create_sub_group_link(view)
     view.link_to 'Create Sub-Group',
                  view.new_group_path(
                    parent_group: group,
@@ -16,12 +16,18 @@ class GroupsPresenter
                  ) if group.admin? current_user
   end
 
-  def join_button_or_application_status(view)
-    if group.pending_application? current_user
-      view.simple_format('Application Pending')
-    elsif !group.contains?(current_user)
-      join_button(view)
+  def join_group_component(view)
+    view.content_tag :div, id: 'join-group' do
+      if group.pending_application? current_user
+        view.concat 'Application Pending'
+      elsif !group.contains?(current_user)
+        view.concat join_button(view)
+      end
     end
+  end
+
+  def pending_applications
+    @pending_applications ||= group.pending_applications
   end
 
   private

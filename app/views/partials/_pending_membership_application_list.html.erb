@@ -1,0 +1,15 @@
+<li id='pending-membership-<%= item.id %>'>
+  <%= item.user.name %>
+  <%= button_to membership_path(item),
+                remote: true,
+                method: :put,
+                params: { :"membership[state_transition]" => :approve } do %>
+    'Approve'
+  <% end %>
+  <%= button_to membership_path(item),
+                remote: true,
+                method: :put,
+                params: { :"membership[state_transition]" => :deny } do %>
+    'Deny'
+  <% end %>
+</li>

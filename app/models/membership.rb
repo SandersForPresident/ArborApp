@@ -18,9 +18,14 @@ class Membership < ActiveRecord::Base
   aasm do
     state :pending, initial: true
     state :approved
+    state :denied
 
     event :approve do
       transitions from: :pending, to: :approved
+    end
+
+    event :deny do
+      transitions from: :pending, to: :denied
     end
   end
 
