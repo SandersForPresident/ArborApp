@@ -26,8 +26,8 @@ source 'https://rails-assets.org' do
 end
 
 group :production do
+  gem 'passenger'
   gem 'pg'
-  gem 'puma'
   gem 'rails_12factor'
 end
 
